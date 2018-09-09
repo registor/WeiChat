@@ -5,40 +5,17 @@
 % This document class emulates the user interface of the Kik messaging
 % application running on an android Moto X.
 
-\ProvidesClass{kik-android}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{qqchat}[2018/09/07 v1.0, GENG Nan nangeng@qq.com with contributions http://www.latexstudio.net/archives/51462.html.]
 
-\makeatletter
 % Load all necessary packages
-\usepackage{varwidth}
-\LoadClass{article}
-\usepackage[UTF8]{ctex}
-\usepackage{xeCJK}
-\xeCJKsetup{
-  AutoFakeSlant = true
-  }
-\xeCJKsetslantfactor{0.17}
-%\usepackage{fontspec}
-
-\setCJKmainfont{SimHei}
-\usepackage{tikz}
+\RequirePackage{varwidth}
+\RequirePackage{tikz}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes.misc}
-% Start with article. Eventually this should be removed,
-% because I'm not actually using it for much of anything
-\RequirePackage{xurl}
-% Set up the page so that it matches phone size.
-\RequirePackage[top=.55in,         bottom=.55in,
-            right=.015in,      left=.015in,
-            paperwidth=3.308in,paperheight=6.103in]{geometry}
 
-% Style the page
-\pagestyle{empty}
-\setmainfont{Arial}
-\setsansfont{Arial}
-\setmonofont{Consolas}
-\setlength{\parindent}{0pt}
 % Color Definitions
-\usepackage{xcolor}
+\RequirePackage{xcolor}
 \definecolor{backgroundgray}{RGB}{238,238,238}
 \definecolor{linegray}{RGB}{212,212,212}
 \definecolor{circgray}{RGB}{199,199,199}
@@ -209,7 +186,7 @@
    \fi
 }}
 
-\usepackage{fontawesome}
+\RequirePackage{fontawesome5}
 % Customization Flags
 \def\@hours{12}
 \def\@minutes{11}
@@ -223,91 +200,101 @@
 \def\@statusbar#1{
   \def\c{androidgray}
   \fill[\c]
-    let \p1 = (current page.north east) in
+    let \p1 = (3.308in, 0.0in) in
       (\x1 - .42in - #1in, \y1 - 0.0415in - #1in) rectangle (\x1 - .43in -#1in, \y1 - 0.1409 in);
 }
 
 % Background Macro
-
+% paperwidth=3.308in,paperheight=6.103in
 \def\@drawBackground{
   \begin{tikzpicture}[remember picture, overlay]
     % Background
-    \fill[backgroundgray] (current page.north east) rectangle (current page.south west);
+    \fill[backgroundgray] (3.308in, 0.0in) rectangle (0.0in, -6.103in);
     \fill[black]
-    let \p1 = (current page.north east) in
-    let \p2 = (current page.north west) in
+    let \p1 = (3.308in, 0.0in) in
+    let \p2 = (0.0in, 0.0in) in
     (\x1,\y1) rectangle (\x2,\y2 - 0.1667in);
     \fill[backgroundgray]
-    let \p1 = (current page.south east) in
-    let \p2 = (current page.south west) in
+    let \p1 = (3.308in, -6.103in) in
+    let \p2 = (0.0in, -6.103in) in
     (\x1,\y1) rectangle (\x2,\y2 + 0.3141in);
     \fill[Qblue]
-    let \p1 = (current page.north east) in
-    let \p2 = (current page.north west) in
+    let \p1 = (3.308in, 0.0in) in
+    let \p2 = (0.0in, 0.0in) in
     (\x1,\y1 - 0.1667in) rectangle (\x2,\y2 - .5289in);
     \draw[thick,linegray]
-    let \p1 = (current page.north east) in
-    let \p2 = (current page.north west) in
+    let \p1 = (3.308in, 0.0in) in
+    let \p2 = (0.0in, 0.0in) in
     (\x1,\y1 - .5289in) -- (\x2,\y2 - .5289in);
     \fill[white,rounded corners]
-    let \p1 = (current page.south east) in
-    let \p2 = (current page.south west) in
+    let \p1 = (3.308in, -6.103in) in
+    let \p2 = (0.0in, -6.103in) in
     (\x1-0.5in,\y1 + 0.3141in) rectangle (\x2+0.03in,\y2 + .6090in);
 
       % Name
     \draw[white]
-      let \p1 = (current page.north) in
+      let \p1 = (1.654in, 0.0in) in
         (\x1, \y1 - .3in) node[anchor=center] {{\zihao{-5}\@partnerName}};
         
      \draw[white]
-         let \p1 = (current page.north) in
-             (\x1, \y1 - .45in) node[anchor=center] {{\zihao{6}\faCheckCircleO\ \@Status}};
+         let \p1 = (1.654in, 0.0in) in
+             (\x1, \y1 - .45in) node[anchor=center] {{\zihao{6}\faCheckCircle[regular]\ \@Status}};
 
       % group icon
         \draw
-          let \p1 = (current page.north east) in
+          let \p1 = (3.308in, 0.0in) in
             (\x1, \y1 - .3481in) node[anchor=east] {\@groupfriend};
             
       % Arrow
       
       \draw
-         let \p1 = (current page.north west) in
+         let \p1 = (0.0in, 0.0in) in
            (\x1, \y1 - .34in) node[anchor=west,white] {\faChevronLeft};
       \draw
-         let \p1 = (current page.north west) in
+         let \p1 = (0.0in, 0.0in) in
            (\x1+0.07in, \y1 - .34in) node[anchor=west,white] {\QqNumber[2ex]{red}{white}{99}};
         
     \draw
-      let \p1 = (current page.south east) in
+      let \p1 = (3.308in, -6.103in) in
         (\x1+0.06in, \y1 + .24in) node[anchor=south east,scale=1] {\QqSendMessage[2em]{backgroundgray}{Qblue}};
     
 
-    \draw
-      let \p1 = (current page.north west) in
-        (\x1,\y1-0.01in) node[anchor=north west,scale=0.75] {\color{androidgray}\faWifi};
+    %\draw
+    %  let \p1 = (0.0in, 0.0in) in
+    %    (\x1,\y1-0.01in) node[anchor=north west,scale=0.75] {\color{androidgray}\faWifi};
 
     % Android Bottom Bar Decorations
     \draw
-       let \p1 = (current page.south west) in
+       let \p1 = (0.0in, -6.103in) in
          (\x1 - 0.05in, \y1 + .3in) node[anchor=north west,scale=1] {\QqMicphone[2.6ex]{backgroundgray}{gray}\hspace{1.1em} \QqPicture[2.6ex]{backgroundgray}{gray}\hspace{1.1em}\QqCamera[2.6ex]{backgroundgray}{gray}\hspace{1.1em} \QqMoney[2.6ex]{backgroundgray}{gray}\hspace{1.1em}\QqVideo[2.6ex]{backgroundgray}{gray}\hspace{1.1em}\QqSmile[2.6ex]{backgroundgray}{gray}\hspace{1.1em}\QqPlus[2.6ex]{backgroundgray}{gray}};
 
    \draw
-       let \p1 = (current page.north east) in
-          (\x1,\y1-0.01in) node[anchor=north east,scale=0.75] {\color{androidgray}\faBluetooth~5G\faSignal~\faBatteryThreeQuarters~\hspace*{5ex}};
+       let \p1 = (3.308in, 0.0in) in
+          (\x1,\y1-0.01in) node[anchor=north east,scale=0.75] {\color{androidgray}\faBluetooth~\faWifi~5G\faSignal~\faBatteryThreeQuarters~};%\hspace*{5ex}
 
   \end{tikzpicture}
 }
 
+\newsavebox\MBox
+\newenvironment{qqminipage}
+  {\par\smallskip\begin{lrbox}{\MBox}\begin{minipage}[t][6.103in]{3.308in}\noindent\vspace*{8ex}}
+  {\end{minipage}\end{lrbox}%
+   \makebox(0,0){\put(0,0){%
+     \@drawBackground}}%
+   \usebox\MBox\par%
+ }
+
 % Make the background appear on every page
-\usepackage{everypage}
-\AddEverypageHook{\@drawBackground}
+%\RequirePackage{everypage}
+%\AddEverypageHook{\@drawBackground}
+%\AddThispageHook{\@drawBackground}
 
 % System Time
 \def\SysTime#1{%
 \begin{tikzpicture}[remember picture, overlay]
      \draw
-       let \p1 = (current page.north east) in
-         (\x1,\y1-0.02in) node[anchor=north east,scale=0.75] {\color{androidgray}#1};
+       let \p1 = (0.0in, 0.0in) in
+         (\x1+0.32in,\y1-0.01in) node[anchor=north east,scale=0.75] {\color{androidgray}#1};%\x1,\y1-0.02in
 \end{tikzpicture}%
 }
 
@@ -315,7 +302,7 @@
 \def\InputMessage#1{%
 \begin{tikzpicture}[remember picture, overlay]
      \draw
-       let \p1 = (current page.south west) in
+       let \p1 = (0.0in, -4.85in) in
          (\x1+0.05in, \y1 + .5524in) node[anchor=north west,scale=.85] {\color{androidgray}#1};
 \end{tikzpicture}%
 }
@@ -323,8 +310,8 @@
 \def\myMessage#1{%
 \begin{tikzpicture}[remember picture, overlay]
 \draw
-   let \p1 = (current page.north) in
-      (\x1 - 1.5in, \y1) node[anchor=north west,scale=0.75] {\color{androidgray}#1};
+   let \p1 = (1.654in, 0.0in) in
+      (\x1 - 1.35in, \y1) node[anchor=north west,scale=0.75] {\color{androidgray}#1};
 \end{tikzpicture}
 }
 
@@ -360,6 +347,7 @@
 
 \def\me#1#2{%
 \hphantom{.}\hfill\begin{tikzpicture}
+    \color{white}
     \draw (0,0) node[anchor=north east,rectangle,rounded corners=2,fill=Qblue, scale=0.75,draw=circgray] (me) {
       \hspace{.1in}\begin{varwidth}{2.5in}
         \vphantom{.}
@@ -381,12 +369,12 @@
   \end{tikzpicture}%
 \vspace{.05in}\\%
 }
-\usepackage{ifthen}
+\RequirePackage{ifthen}
 
 \newlength{\testxxla}
 
 \def\you#1#2{%
-\begin{tikzpicture}
+\hphantom{.} \begin{tikzpicture}
     \ifdefined\@partnerPic
     \draw (-.6,-.3) node[scale=1.825,circle, path picture={
         \node at (path picture bounding box.center){
@@ -398,7 +386,7 @@
     \draw (0,-.1) node[anchor=west,gray] {\settowidth{\testxxla}{\zihao{6}#1}\zihao{6}#1};
     \draw (0,-.3) node[remember picture,anchor=north west,rectangle,rounded corners=2,fill=white, scale=0.75,draw=linegray] (n1) {
       \hspace{.1in}
-	  \begin{varwidth}[c]{2.5in}
+          \begin{varwidth}[c]{2.5in}
         \vphantom{.}
         \raggedright\zihao{-4} #2\\
         \tiny \color{white}.
@@ -407,7 +395,7 @@
     };
     \fill[white] (0.01in,-0.16in) -- (-0.06in,-0.22in) -- (0.01in,-0.28in) -- cycle;
     \draw[linegray] (0,-0.16in) -- (-0.06in,-0.22in) -- (0in,-0.28in);
-	%\draw (n1) node[yshift=-10pt,xshift=\testxxla,anchor=south east,overlay] {\includegraphics[width=.25in]{eye.pdf}};
+        %\draw (n1) node[yshift=-10pt,xshift=\testxxla,anchor=south east,overlay] {\includegraphics[width=.25in]{eye.pdf}};
   \end{tikzpicture}%
 \vspace{.05in}\\%
 }
@@ -436,20 +424,21 @@
   \vspace{.01in}\\
 }
 
-\def\meb#1#2{
+\def\meb#1#2#3{
   \hphantom{.}\hfill\begin{tikzpicture}
-    \color{black}
-    \draw (0,-.3) node[remember picture,anchor=north east,rectangle,rounded corners=5,fill=kikyellow, scale=0.75,draw=kikbrown] (meb) {
+    %\color{black}
+    \color{white}
+    \draw (0,-.3) node[remember picture,anchor=north east,rectangle,rounded corners=5,fill=Qblue, scale=0.75,draw=circgray] (meb) {
       \hspace{.1in}\begin{varwidth}{2.5in}
         \vphantom{.}
         \raggedleft\zihao{-4}#2\\
-        \tiny  \color{kikyellow}.
+        \tiny  \color{msggreen}.%kikyellow
       \end{varwidth}
       \hspace{.1in}
     };
-    \draw (0,-.1) node[anchor=east,kikbrown] {\settowidth{\testxxla}{\zihao{6}#1}\zihao{6}#1};
-    \fill[kikyellow] ([yshift=-5pt,xshift=-\pgflinewidth]meb.north east) (-0.01in,-0.18in) -- (0.04in,-0.16in) -- (-0.01in,-0.25in) -- cycle;
-     \draw[kikbrown] ([yshift=-5pt,xshift=-\pgflinewidth]meb.north east) (-0.005in,-0.18in) -- (0.04in,-0.16in) -- (-0.005in,-0.24in);
+    \draw (0,-.1) node[anchor=east,gray] {\settowidth{\testxxla}{\zihao{6}#1}\zihao{6}#1};
+    \fill[Qblue] ([yshift=-5pt,xshift=-\pgflinewidth]meb.north east) (-0.01in,-0.18in) -- (0.04in,-0.16in) -- (-0.01in,-0.25in) -- cycle;
+     \draw[circgray] ([yshift=-5pt,xshift=-\pgflinewidth]meb.north east) (-0.005in,-0.18in) -- (0.04in,-0.16in) -- (-0.005in,-0.24in);
 %    \fill[kikyellow] ([yshift=-5pt,xshift=-\pgflinewidth]mea.north east) to[bend right=15] ++(3mm,-3mm) to[bend left] ++(-3mm,1mm) --cycle;
     \ifdefined\@MePic
         \draw ([yshift=-3pt,xshift=.25in]meb.north east) node[scale=1.825,circle, path picture={
@@ -460,13 +449,13 @@
         ] {};
     \draw ([yshift=3pt,xshift=0.5ex]meb.south west) node[scale=1.825,path picture={
                   }
-                ] {\includegraphics[width=.13in]{2615.pdf}};
+                ] {\includegraphics[width=.1in]{#3}};
   \end{tikzpicture}
   \vspace{.01in}\\
 }
 
-\def\youa#1#2{%
-  \begin{tikzpicture}
+\def\youa#1#2#3{%
+\hphantom{.}  \begin{tikzpicture}
   \ifdefined\@partnerPic
       \draw (-.6,-.3) node[scale=1.825,circle, path picture={
           \node at (path picture bounding box.center){
@@ -487,13 +476,13 @@
     \fill[white] ([yshift=-5pt,xshift=\pgflinewidth]youa.north west) to[bend left=15] ++(-3mm,-3mm) coordinate (arrow) to[bend right] ++(3mm,1mm) -- cycle;
     \draw ([yshift=-0.5ex,xshift=-1ex]youa.north east) node[scale=1.825,path picture={
               }
-            ] {\includegraphics[width=.15in]{eye.pdf}};
+            ] {\includegraphics[width=.1in]{#3}};
   \end{tikzpicture}
   \vspace{.05in}\\%
 }
 
-\def\youb#1#2{%
-  \begin{tikzpicture}
+\def\youb#1#2#3{%
+\hphantom{.}  \begin{tikzpicture}
   \ifdefined\@partnerPic
       \draw (-.6,-.0) node[scale=1.825,circle, path picture={
           \node at (path picture bounding box.center){
@@ -516,7 +505,7 @@
 %    \fill[white] ([yshift=-3pt,xshift=\pgflinewidth]youa.north west) to[bend left=10] ++(-3mm,-3mm) coordinate (arrow) to[bend right] ++(3mm,1mm) -- cycle;
     \draw ([yshift=3pt,xshift=-1ex]youb.south east) node[scale=1.825,path picture={
               }
-            ] {\includegraphics[width=.13in]{2615.pdf}};
+            ] {\includegraphics[width=.1in]{#3}};
   \end{tikzpicture}
   \vspace{.05in}\\%
 }
@@ -527,4 +516,6 @@
   \end{tikzpicture}\hfil\\%
 }
 
-\makeatother
+\endinput
+%%
+%% End of file `weichat.sty'.

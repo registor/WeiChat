@@ -1,0 +1,116 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+% 包含beamer宏包
+\documentclass[t, fragile, xcolor=svgnames]{ctexbeamer}
+% 草稿模式，加快编译速度\documentclass[draft,xcolor=svgnames]{beamer}
+
+% 用TiKZ绘制的QQ聊天界面宏包
+\usepackage{qqchat}
+
+% 聊天模拟中表情符号命令，注意路径设置
+\newcommand{\emoji}[1]{\includegraphics[width=1em]{twitter/#1}}
+
+% 设置标题==================================================
+\title[QQ聊天界面] % (可选，仅当标题过长时使用)
+{TiKZ绘制的仿QQ聊天界面的模板}
+\author[Nine, G.] % (可选，仅当有多个作者时使用)
+{
+  耿楠
+}
+
+\institute[
+CS of CIE, NWSUAF\\
+Yangling, China ] % 可选项，在每页边栏的底部显示
+{% 显示在标题页
+  计算机科学系 \\
+  信息工程学院 \\
+  西北农林科技大学\\
+  中国$\boldsymbol{\cdot}$杨凌  
+  
+}
+
+\date{\today}
+
+% =======================================================
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 标题页
+\begin{frame}[plain,noframenumbering] % plain选项移除标题页的边栏和页眉
+  \titlepage
+\end{frame}
+
+\begin{frame}[fragile, t]{C-Story}{趣谈}%, label=testframe
+  \begin{itemize}
+  \item C语言趣谈
+  \end{itemize}
+  \vspace{-4ex}
+  \begin{center}
+    \setPartnerName{说C解C5000人群}% 群名称
+    \groupfriend{\QqGroup[1em]{Qblue}{white}}% 群标志
+    \setStatus{3668人在线}% 在线状态
+    \scalebox{0.45}{
+      \begin{qqminipage}        
+        \SysTime{15:14}% 系统时间       
+        \myMessage{C语言高手横空出世}\\% 换行是必须的，否则排版后续不正确，需要改进
+        \time{15:10}% 聊天时间
+        \InputMessage{\emoji{1F602}……}% 不可放在后面，位置会出错，与article位置无法一致，需要改进
+        \setPartnerPic{imgs/xiaojiejie.jpg}% 更换头像
+        \you{秋}% 昵称
+        {如何快速学会编程\emoji{1F605}}% 聊天内容
+        \setMePic{imgs/hlz}% 更换头像
+        \meb{夏}% 昵称
+        {求生意志\emoji{1F606}}{imgs/eye}% 聊天内容
+        \setPartnerPic{imgs/xuemei}% 更换头像
+        \youa{春}% 昵称
+        {编程有有技巧吗\emoji{1F64A}}{imgs/2615}% 聊天内容
+        \meb{夏}% 昵称
+        {有，熟能生巧\emoji{1F600}}{imgs/eye}% 聊天内容
+        \setPartnerPic{imgs/xiaogege}% 更换头像
+        \youb{冬}% 昵称
+        {一编程就打瞌睡，怎么破\emoji{1F607}}{imgs/2615}% 聊天内容
+        \meb{夏}% 昵称
+        {目测对编程过敏\emoji{1F604}}{imgs/eye}% 聊天内容
+        \setPartnerPic{imgs/xuemei}% 更换头像
+        \youa{春}% 昵称
+        {高手每天都写多少代码啊\emoji{1F628}}{imgs/2615}% 聊天内容
+        \meb{夏}% 昵称
+        {一两行到 N 行不等，直到吐\emoji{1F624}}{imgs/eye}% 聊天内容
+      \end{qqminipage}\qquad
+      \begin{qqminipage}        
+        \SysTime{15:35}% 系统时间
+        \myMessage{C语言高手横空出世}\\% 换行是必须的，否则后续排版不正确，需要改进
+        \time{15:25}% 聊天时间
+        \InputMessage{\emoji{1F634}……}% 不可放在后面，位置会出错，需要改进
+        \setMePic{imgs/hlz}% 更换头像        
+        \setPartnerPic{imgs/xiaojiejie.jpg}% 更换头像
+        \you{秋}% 昵称
+        {您认为的编程高手是什么状态\emoji{1F60B}}% 聊天内容
+        \meb{夏}% 昵称
+        {目空一切\emoji{1F609}}{imgs/eye}% 聊天内容
+        \setPartnerPic{imgs/xiaogege}% 更换头像
+        \youb{冬}% 昵称
+        {我写的代码老是出错是咋回事\emoji{1F63E}}{imgs/2615}% 聊天内容
+        \meb{夏}% 昵称
+        {对计算机太凶，温柔点就好了\emoji{1F627}}{imgs/eye}% 聊天内容
+        \setPartnerPic{imgs/shimei.png}% 更换头像
+        \you{月}% 昵称
+        {师，能不能讲一下你的经历\emoji{1F633}}% 聊天内容
+        \meb{夏}% 昵称
+        {苦、苦、苦，哭、哭、哭，成\emoji{1F637}}{imgs/eye}% 聊天内容
+        \you{月}% 昵称
+        {想问问，您编程之余学什么\emoji{1F608}}% 聊天内容
+        \meb{夏}% 昵称
+        {学睡觉\emoji{1F634}}{imgs/eye}% 聊天内容
+      \end{qqminipage}
+    }
+  \end{center}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,132 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage{xeCJK}
+\xeCJKsetup{
+  AutoFakeSlant = true
+  }
+\xeCJKsetslantfactor{0.17}
+\usepackage{fontspec}
+
+\setCJKmainfont{SimHei}
+
+% Style the page
+\pagestyle{empty}
+\setmainfont{Arial}
+\setsansfont{Arial}
+\setmonofont{Consolas}
+
+% 用TiKZ绘制的QQ聊天界面宏包
+\usepackage{qqchat}
+
+
+\usepackage{amsmath}
+
+\newcommand{\emoji}[1]{\includegraphics[width=1em]{twitter/#1}}% 载入表情符号命令
+\newcommand{\myverb}[1]{\texttt{$\backslash$#1}}
+
+\begin{document}
+%--------------------------------------------------
+%                   群聊中
+%--------------------------------------------------
+\setPartnerName{\LaTeX{}技术交流5000人群}% 群名称
+\groupfriend{\QqGroup[1em]{Qblue}{white}}% 群聊标志
+\setStatus{3668人在线}% 在线人数
+\scalebox{0.8}{% 缩放比例
+  \begin{qqminipage}% QQ聊天界面环境
+    \SysTime{13:14}% 系统时间
+    \myMessage{通知栏由你定}\\ % 换行是必须的，否则后续排版不正确，需要改进
+    \time{13:14}% 聊天时间
+    %\InputMessage{\emoji{1F602}……}% 不可放在后面，位置会出错，但article与beamer中的位置暂时无法统一，需要改进
+    \setPartnerPic{imgs/xiaojiejie.jpg}% 更换头像
+    \you{小姐姐}% 昵称
+    {这个聊天软件可以支持数学公式吗}% 聊天内容
+    \setPartnerPic{imgs/xuemei}% 更换头像
+    \youa{学妹}% 昵称
+    {这个聊天软件可以支持数学公式吗}{imgs/2615}% 聊天内容
+    \youa{学妹}% 昵称
+    {哈哈，还可以换聊天气泡\emoji{1F60D}}{imgs/2615}% 聊天内容
+    \setPartnerPic{imgs/shimei}% 更换头像
+    \youb{师妹}% 昵称
+    {还有这个\emoji{1F64A}好贴心}{imgs/2615}% 聊天内容
+    \setPartnerPic{imgs/xiaogege.jpg}% 更换头像
+    \you{小哥哥}% 昵称
+    {我试试哈，$\chi(\lambda) = \left| \begin{array}{ccc}
+                               \lambda - a & -b & -c \\
+                               -d & \lambda - e & -f \\
+                               -g & -h & \lambda - i \end{array} \right|$}% 聊天内容
+    \setMePic{imgs/ysxgg}% 更换头像
+    \me{夜神小哥哥}% % 昵称
+    {这么牛！\emoji{1F602}}% 聊天内容
+  \end{qqminipage}% QQ聊天界面环境
+  
+  \begin{qqminipage}% QQ聊天界面环境
+    \SysTime{13:14}% 系统时间
+    \myMessage{通知栏由你定}\\% 换行是必须的，否则后续排版不正确，需要改进
+    \time{13:14}% 聊天时间
+    \setMePic{imgs/ysxgg}% 更换头像
+    \mea{夜神小哥哥}% 昵称
+    {同一人还可以用两个气泡呢}% 聊天内容
+    \setPartnerPic{imgs/xiaojiejie.jpg}% 更换头像
+    \you{小姐姐}% 昵称
+    {什么鬼\begin{align}
+             \cos 2\theta & =  \cos^2 \theta - \sin^2 \theta \\
+                          & =  2 \cos^2 \theta - 1.
+           \end{align}}% 聊天内容
+    \you{小姐姐}% 昵称
+    {太棒了，以后就用这个}% 聊天内容
+  \end{qqminipage} 
+}
+%--------------------------------------------------
+%                   私聊中
+%--------------------------------------------------
+\newpage
+\groupfriend{\QqFriend[1em]{Qblue}{white}}% 私聊标志
+\setPartnerName{师兄}% 私聊对象备注
+\setStatus{小霸王游戏机在线}% 私聊对象状态
+\begin{qqminipage}
+  \SysTime{20:20}% 系统时间
+  \myMessage{要求人帮忙就快点把代码po上来！！！}\\% 换行是必须的，否则\time排版不正确，需要改进
+  \time{20:20}% 聊天时间
+  %\InputMessage{\emoji{1F64A}好……}% 与beamer的位置无法统一，需要改进
+  \setMePic{imgs/shimei}% 更换头像
+  \meb{师妹}% 昵称
+  {学姐在线上好像换了一个人格……}{imgs/eye}% 聊天内容
+  \setPartnerPic{imgs/xiaogege}% 更换头像
+  \you{师兄}% 昵称
+  {知道就好，别说破，别说破}% 聊天内容
+  %\InputMessage{\emoji{1F64A}好……}
+\end{qqminipage}
+\newpage
+%--------------------------------------------------
+%                   群聊中
+%--------------------------------------------------
+\groupfriend{\QqGroup[1em]{Qblue}{white}}% 群聊标志
+\setPartnerName{\LaTeX 小组织}% 群名称
+\setStatus{5人在线}% 群在线状态
+\begin{qqminipage}
+  \SysTime{20:20}\\%\\% 换行是必须的，否则其它排版不正确，需要改进
+  \setPartnerPic{imgs/xiaojiejie}% 更换头像
+  \you{学姐}% 昵称
+  {要求人帮忙就快点把代码po上来！！！}% 聊天内容
+  \setPartnerPic{imgs/hlz.jpg}% 更换头像
+  \you{花轮子}% 昵称
+  {分享了档案paper.zip(394.6KB)}% 聊天内容
+  \setPartnerPic{imgs/xiaojiejie.jpg}% 更换头像
+  \you{学姐}% 昵称
+  {末尾\myverb{bibliography}和\myverb{IEEEbiography}环境等的确没什么特
+    别的}% 聊天内容
+  \setPartnerPic{imgs/xiaogege}% 更换头像
+  \you{师兄}% 昵称
+  {你干嘛去加了这个\texttt{flushend}宏包了？}% 聊天内容
+\end{qqminipage}
+%%%%%%%%%%%%%%%%
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
